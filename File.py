@@ -27,13 +27,13 @@ def savefile(name,str):
         i=0
         j=0
         str = str.replace("\n","")
-        datas = str.split("  ")
+        datas = str.split("    ")
         workbook = Workbook()
         booksheet = workbook.active
         for data in datas:
             booksheet.cell(i+1, j+1).value=data
             j=j+1
-            if j == 4:
+            if j == 9:
                 i=i+1
                 j=0
         workbook.save(name)
