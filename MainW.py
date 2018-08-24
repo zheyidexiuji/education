@@ -5,6 +5,8 @@ import File as F
 import sys
 import upfile
 import changepassword as ch
+import datetime
+import announcement as an
 class MainW(QMainWindow):
     def __init__(self,acc):
         super().__init__()
@@ -33,7 +35,7 @@ class MainW(QMainWindow):
         btn4 = QAction('成绩',self)
         #btn4.triggered.connect()
         btn5 = QAction('公告',self)
-        #btn5.triggered.connect()
+        btn5.triggered.connect(lambda :self.getannouncement())
         btn6 =QAction('更改密码',self)
         btn6.triggered.connect(lambda :self.change())
         btn7 =QAction('选择班级',self)
@@ -87,6 +89,10 @@ class MainW(QMainWindow):
         items = ["1", "2", "3", "4"]
         value, ok = QInputDialog.getItem(self, "选择班级", "请选择班级:", items, 1, True)
         self.statusBar().showMessage(value)
+    def getannouncement(self):
+        time = datetime.date.today()
+        text = an.getannouncemnet(time)
+        self.review.setText(text)
 def main(acc):
     app1 = QApplication(sys.argv)
     MW = MainW(acc)
